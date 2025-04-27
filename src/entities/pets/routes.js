@@ -1,4 +1,4 @@
 const router = require("express").Router();
-const { userController } = require("./controller.js");
-router.post("/pets", userController);
+const { petController } = require("./controller.js");
+router.post("/", petController);
 module.exports = router;
