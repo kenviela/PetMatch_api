@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
 const port = 3001;
 const apiRoutes = require("./src/api.routes");

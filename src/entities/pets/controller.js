@@ -12,6 +12,7 @@ const petController = async (req, res) => {
       breed: data.breed,
       description: data.description,
     });
+    return res.status(201).json({ message: "pet created successfully" });
   } catch (error) {
     console.log("error", error);
     return res.json({ errorMessage: error.message });
