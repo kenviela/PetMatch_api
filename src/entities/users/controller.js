@@ -22,4 +22,5 @@ const userController = async (req, res) => {
     return res.json({ errorMessage: error.message });
   }
 };
+
 module.exports = { userController };

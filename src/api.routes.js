@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { userController } = require("./entities/users/controller.js");
-const { petController } = require("./entities/pets/controller.js");
-const { loginController } = require("./entities/login/controller.js");
-router.post("/users", userController);
-router.post("/pets", petController);
-router.post("/login", loginController);
+const usersRouter = require("./entities/users/routes.js");
+const petsRouter = require("./entities/pets/routes.js");
+const loginRouter = require("./entities/login/routes.js");
+router.use("/users", usersRouter);
+router.use("/pets", petsRouter);
+router.use("/login", loginRouter);
 module.exports = router;
