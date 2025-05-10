@@ -4,7 +4,7 @@ const userController = async (req, res) => {
   console.log("estoy dentro");
   try {
     const data = req.body;
-
+    console.log("userId", data);
     // Encriptar la contraseña
     const hashedPassword = await bcrypt.hash(data.password, 10);
 
@@ -15,7 +15,6 @@ const userController = async (req, res) => {
       password: hashedPassword,
       role: data.role,
     });
-
     return res.status(201).json({ message: "User created successfully" });
   } catch (error) {
     console.log("error", error);

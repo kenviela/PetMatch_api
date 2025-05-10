@@ -44,7 +44,9 @@ const updateController = async (req, res) => {
       name: petData.name || pet.name, // Si no se pasa 'name', se deja el actual
       age: petData.age || pet.age, // Lo mismo para 'age' y 'breed'
       breed: petData.breed || pet.breed,
+      description: petData.description || pet.description,
     };
+    console.log("updatedData", updatedData);
 
     // Actualizar la mascota en la base de datos
     await db("pets").where("id", petId).update(updatedData);
@@ -84,10 +86,26 @@ const deleteController = async (req, res) => {
     return res.status(500).json({ errorMessage: error.message });
   }
 };
+const getPetByIdController = async (req, res) => {
+  const petId = req.params.id; // Obtener el ID de la mascota desde los parámetros de la URL
+  try {
+    // Buscar la mascota en la base de datos por su ID
+    const pet = await db("pets").where("id", petId).first(); // .first() obtiene el primer resultado
 
+    if (!pet) {
+      return res.status(404).json({ message: "Mascota no encontrada" });
+    }
+
+    return res.status(200).json(pet); // Devuelve la mascota encontrada
+  } catch (error) {
+    console.error("Error al obtener la mascota:", error);
+    return res.status(500).json({ message: "Error interno del servidor" });
+  }
+};
 module.exports = {
   petController,
   deleteController,
   updateController,
   getController,
+  getPetByIdController,
 };
