@@ -10,7 +10,7 @@ const authMiddleware = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, "mi_clave_secreta_prueba");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded; // Guarda los datos del token (id y role)
     next();
   } catch (error) {

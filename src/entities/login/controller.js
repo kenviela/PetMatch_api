@@ -21,7 +21,7 @@ const loginController = async (req, res) => {
     // Si las credenciales son correctas, Generar un token JWT
     const token = jwt.sign(
       { id: user.id, role: user.role },
-      "mi_clave_secreta_prueba",
+      process.env.JWT_SECRET,
       {
         expiresIn: "1h",
       }
